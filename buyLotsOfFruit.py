@@ -36,10 +36,11 @@ def buyLotsOfFruit(orderList):
     """
     totalCost = 0.0
     "*** YOUR CODE HERE ***"
-    apples = 2.00*2.0
-    pears = 3.0*1.75
-    limes = 4.0*0.75
-    totalCost += apples + pears + limes
+    for fruit , pound in orderList:
+        if fruit in fruitPrices.keys():
+            totalCost += ( pound * fruitPrices[fruit] )
+        else:
+            return None
     
     return totalCost
 

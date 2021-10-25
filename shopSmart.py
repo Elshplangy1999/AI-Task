@@ -22,16 +22,26 @@ For orders:  [('apples', 3.0)] best shop is shop2
 """
 from __future__ import print_function
 import shop
+from typing import List
 
-
-def shopSmart(orderList, fruitShops):
+def shopSmart(orderList, fruitShops : List[shop.FruitShop]):
     """
         orderList: List of (fruit, numPound) tuples
         fruitShops: List of FruitShops
     """
     "*** YOUR CODE HERE ***"
+    orderTotalList=[] # [(shop,orderPrice)]
+     
+    for fruShop in fruitShops:
+       orderTotalList.append(( fruShop , fruShop.getPriceOfOrder(orderList) )) 
+    
+    #min function returns (fruShop,lowestPrice) 
+    #then pass only fruShop to the return of shopSmart Function.
+    return min( orderTotalList , key=getorderPrice )[0]
 
-    return None
+def getorderPrice(orderTotalTuple):
+    #Takes list of (FruitShops,orderPrice)
+    return orderTotalTuple[1]
 
 
 if __name__ == '__main__':
